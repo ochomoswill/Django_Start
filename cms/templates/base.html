@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="{% block description %} {% endblock %}">
+    <meta name="author" content="">
+    <link rel="icon" href="">
+
+    <title>
+        Aura Naturals |{% block title %}{% endblock %}
+    </title>
+    <!--=================================================================-->
+    <!--                        STYLESHEETS                              -->
+    <!--=================================================================-->
+        <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{% static 'css/memenu.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{% static 'css/custom.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+        <link href="{% static 'css/easydropdown.css' %}" rel="stylesheet" type="text/css"/>
+    <!--=================================================================-->
+    <!--                       END OF STYLESHEETS                        -->
+    <!--=================================================================-->
+
+    <!--=================================================================-->
+    <!--                        SCRIPTS                                  -->
+    <!--=================================================================-->
+        <!--jQuery(necessary for Bootstrap's JavaScript plugins)-->
+        <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+        <!--Scripts for simple cart-->
+        <script src="{% static 'js/simpleCart.min.js' %}"> </script>
+        <!--Scripts for the menu-->
+        <script type="text/javascript" src="{% static 'js/memenu.js' %}"></script>
+        <script>
+            $(document).ready(function(){$(".memenu").memenu();});
+        </script>
+        <!--Scripts for carousel and bootstrap-->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/jquery.easydropdown.js' %}"></script>
+    <!--=================================================================-->
+    <!--                       END OF SCRIPTS                            -->
+    <!--=================================================================-->
+
+
+</head>
+<body>
+    <!--top-header-->
+	<div class="top-header">
+		<div class="container">
+			<div class="top-header-main">
+				<div id="logoName" class="col-md-6  top-header-left" style="color: white;font-size: 22px;padding-top: 3px;">
+					Aura Naturals
+				</div>
+				<div class="col-md-6 top-header-left">
+
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!--top-header-->
+    <header class="header">
+        <div class="container">
+            <div class="col-md-1">
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-md-11" >
+                <input class="menu-btn" type="checkbox" id="menu-btn" />
+                <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                <ul id="menu" class="menu">
+
+                    <li class="grid "><a class="page_active" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="grid"><a href="{% url 'accessories' %}">Accessories</a>
+                    </li>
+                    <li class="grid"><a href="{% url 'hair_products' %}">Hair Products</a>
+                    </li>
+                    <li class="grid"><a href="{% url 'facial_products' %}">Facial Products</a>
+                    </li>
+                    <li class="grid"><a href="{% url 'testimonials' %}">Testimonials</a>
+                    </li>
+                    <li style="border-bottom: none;" class="grid"><a href="{% url 'contact' %}">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </header>
+	<!--end of top-header-->
+
+        {% block content %}
+
+        {% endblock %}
+
+    <div class="information" style="background-color: #eeeeee;margin-top: 20px;">
+		<div class="container" style="padding-top: 50px">
+			<div class="infor-top" style="border-bottom: none">
+				<div class="col-md-3 infor-left" style="margin-bottom: 15px">
+					<h3>Follow Us</h3>
+					<ul>
+						<li><a href="https://web.facebook.com/AuraNaturalske/" target="_blank"><img src="/static/img/aura_natural_images/contact_us/facebook.png"><h6>@AuraNaturalske</h6></a></li>
+                        <li><a href="https://web.facebook.com/auraccessorieske/" target="_blank"><img src="/static/img/aura_natural_images/contact_us/facebook.png"><h6>@auraccessorieske</h6></a></li>
+
+
+
+						<li><a href="https://www.instagram.com/auranaturalske/" target="_blank"><img src="/static/img/aura_natural_images/contact_us/instagram.png"><h6>Aura Naturals_ke</h6></a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 infor-left">
+					<h3>Our Categories</h3>
+					<ul>
+						<li><a href="{% url 'accessories' %}"><p>Accessories</p></a></li>
+						<li><a href="{% url 'facial_products' %}"><p>Facial Products</p></a></li>
+						<li><a href="{% url 'hair_products' %}"><p>Hair Products</p></a></li>
+					</ul>
+
+				</div>
+				<div class="col-md-3 infor-left">
+					<h3>Our Till Number:</h3>
+					<img height="115px" style="margin-top: 20px" src="/static/img/lipa_na_mpesa.png"/>
+				</div>
+				<div class="col-md-3 infor-left">
+					<h3>Store Information</h3>
+					<h4>Aura Naturals,
+						<span>University Way,</span>
+						Nairobi City.</h4>
+					<h5>+254 723 4567</h5>
+					<p><a href="mailto:example@email.com">info@auranaturals.com</a></p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!--information-end-->
+
+	<!--footer-starts-->
+	<div class="footer" style="background-color: #f2f2f2;">
+		<div class="container">
+			<div class="footer-top">
+				<div class="col-md-6" id="footer-right-text" style="float: left">
+					<p>© 2016 Aura Naturals. All Rights Reserved | Design by  Ochomoswill<!--<a href="http://w3layouts.com/" target="_blank">W3layouts</a>--> </p>
+				</div>
+				<div class="col-md-6 footer-right" style="margin-top:-10px;" >
+					<form>
+						<input type="text" value="Enter email address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Email';}">
+						<input type="submit" value="Subscribe">
+					</form>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!--footer-end-->
+
+
+</body>
+</html>

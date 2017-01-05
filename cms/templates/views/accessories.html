@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% comment %}Title{% endcomment %}
+{% block title %}
+    Accessories
+{% endblock %}
+
+{% comment %}Page Content{% endcomment %}
+{% block content %}
+
+    <!--start-breadcrumbs-->
+<div class="breadcrumbs" >
+    <div class="container">
+        <div class="breadcrumbs-main">
+            <ol class="breadcrumb">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li class="active">Accessories</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!--end-breadcrumbs-->
+
+<!--prdt-starts-->
+<div class="prdt">
+    <div class="container">
+        <div class="prdt-top">
+            <div class="col-md-3 prdt-right" style="margin-bottom: 60px">
+                <style>
+                            .row1 ul li{
+                            padding: 10px;
+                          	padding-left:0px;
+                          	padding-bottom:5px;
+                            }
+                            .product-bottom {
+                                margin-top: 0px;
+                                padding-left: 15px;
+                            }
+                            @media (min-width: 1024px) {
+                                #accessories.product-main {
+                                    padding: 1em 0 1.9em 0;
+                                    height: 370px;
+                                    margin-bottom: 20px;
+                                }
+                            }
+                            @media (min-width: 1440px) {
+                                #accessories.product-main {
+                                    padding: 1em 0 1.9em 0;
+                                    height: 450px;
+                                    margin-bottom: 20px;
+                                }
+                            }
+                            .widget_product_categories li {
+                                    border-top: 1px solid #ddd;
+                                    padding-bottom: 10px;
+                                    padding-top: 10px;
+                                    padding-left: 10px;
+                                    margin-left: 10px;
+                                    margin-right: 10px;
+                                }
+                            .widget_product_categories ul li {
+                                    border-top: 1px solid #ddd;
+                                    padding-bottom: 10px;
+                                    padding-top: 10px;
+                                    padding-left: 10px;
+                                    margin-left: 10px;
+                                    margin-right: 10px;
+                                }
+                            .widget_product_categories li:first-child {
+                                    border: none;
+                                }
+                            .widget_product_categories ul {
+                                    list-style: none;
+                                }
+                            .active_product{
+                                    font-weight: 600;
+                                }
+                            .cat_item a{
+                                margin-left: 10px;
+                            }
+
+                          </style>
+
+                <div class="w_sidebar">
+                    <section class="sky-form">
+                        <h4 style="color:#45a416">Product Categories</h4>
+
+                        <div>
+                            <ul class="widget_product_categories" style="padding:0; border: 2px solid #ececec;">
+                                <li>
+                                    <a href="{% url 'accessories' %}" class="active_product">Accessories</a>
+                                </li>
+
+                                        <li class="cat_item"><a href="{% url 'accessory_ankle_chains' %}">Ankle Chains</a></li>
+                                        <li class="cat_item" ><a href="{% url 'accessory_body_accessory' %}">Body Accessory</a></li>
+                                        <li class="cat_item" ><a href="{% url 'accessory_chokers'%}">Chokers</a></li>
+                                        <li class="cat_item" ><a href="{% url 'accessory_earings' %}">Earings</a></li>
+                                        <li class="cat_item" ><a href="{% url 'accessory_hair_accessory'%}">Hair Accessories</a></li>
+
+
+                                <li><a href="{% url 'hair_products' %}">Hair Products</a></li>
+                                <li><a href="{% url 'facial_products' %}">Facial Products</a></li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="col-md-9 prdt-left" style="margin-top: -20px; padding-left: 30px">
+                <h2 style="font-weight:lighter">Accessories</h2>
+                <div class="product-one">
+                    <div class="row">
+                    {% for product in products %}
+
+                        <div class="col-md-4 product-left p-left">
+                            <div id="accessories" class="product-main simpleCart_shelfItem">
+                                <a href="{{ product.get_absolute_url }}" class="mask"><img class="img-responsive zoom-img" src="{{ product.image.url }}" alt="" /></a>
+                                <div class="product-bottom">
+                                    <h3>{{ product.name }}</h3>
+                                    <p>Explore Now</p>
+                                    <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">KES {{ product.price }}</span></h4>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    {% endfor %}
+                    </div>
+
+
+                </div>
+
+            </div>
+        {% include 'paginator.html' with page=products %}
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+
+<!--product-end-->
+{% endblock %}
+
+
+
+
+
+
+
+
+

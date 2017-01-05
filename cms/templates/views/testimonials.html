@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% comment %}Title{% endcomment %}
+{% block title %}
+    Testimonials
+{% endblock %}
+
+{% comment %}Page Content{% endcomment %}
+{% block content %}
+
+    <!--start-breadcrumbs-->
+<div class="breadcrumbs" >
+    <div class="container">
+        <div class="breadcrumbs-main">
+            <ol class="breadcrumb">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li class="active">Testimonials</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!--end-breadcrumbs-->
+
+<!--testimonials-starts-->
+<div class="prdt">
+    <div class="container">
+        <div class="prdt-top">
+            <div class="col-md-12 prdt-left">
+                <h2 style="font-weight:lighter; margin-bottom: 50px">Testimonials</h2>
+
+                {% for review in reviews %}
+                <div class="item">
+                    <blockquote>
+                        <p>{{ review.message }}</p>
+                        <footer>{{ review.name }}</footer>
+                    </blockquote>
+                </div>
+                {% endfor %}
+
+            </div>
+            {% include 'paginator.html' with page=reviews %}
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!--testimonials-end-->
+{% endblock %}
+
+
+
+
+
+
+
+
+

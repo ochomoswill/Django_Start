@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% comment %}Title{% endcomment %}
+{% block title %}
+    {{ products.name }}
+{% endblock %}
+
+{% comment %}Page Content{% endcomment %}
+{% block content %}
+<!--start-breadcrumbs-->
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="breadcrumbs-main">
+				<ol class="breadcrumb">
+					<li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'accessories' %}">Accessories</a></li>
+					<li class="active">{{ products.name }}</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<!--end-breadcrumbs-->
+	<!--start-single-->
+	<div class="single contact">
+		<div class="container">
+			<div class="single-main">
+				<div class="col-md-9 single-main-left">
+				<div class="sngl-top">
+					<div class="col-md-5 single-top-left">
+						<div class="flexslider">
+							  <ul class="slides">
+								<li data-thumb="images/s-1.jpg">
+									<div class="thumb-image"> <img src="{{ products.image.url }}" data-imagezoom="true" class="img-responsive" alt=""/> </div>
+								</li>
+							  </ul>
+						</div>
+						<!-- FlexSlider -->
+						<script src="/static/js/imagezoom.js"></script>
+						<script defer src="/static/js/jquery.flexslider.js"></script>
+						<link rel="stylesheet" href="/static/css/flexslider.css" type="text/css" media="screen" />
+
+						<script>
+						// Can also be used with $(document).ready()
+						$(window).load(function() {
+						  $('.flexslider').flexslider({
+							animation: "slide",
+							controlNav: "thumbnails"
+						  });
+						});
+						</script>
+					</div>
+					<div class="col-md-7 single-top-right">
+						<div class="single-para simpleCart_shelfItem">
+						<h2 style="font-weight: 100; font-size: 26px; font-family: inherit">{{ products.name }}</h2>
+							<div class="star-on">
+								<ul class="star-footer">
+										<li><a href="#"><i> </i></a></li>
+										<li><a href="#"><i> </i></a></li>
+										<li><a href="#"><i> </i></a></li>
+										<li><a href="#"><i> </i></a></li>
+										<li><a href="#"><i> </i></a></li>
+									</ul>
+								<div class="review">
+									<a href="#"> 1 customer review </a>
+
+								</div>
+							<div class="clearfix"> </div>
+							</div>
+
+							<h5 class="item_price" style="font-size: 20px; font-family: inherit">KES {{ products.price }}</h5>
+							<p >{{ products.name }} is another Accessory that Aura Naturals offers. All for an affordable price of KES {{ products.price }} </p>
+
+
+
+								<a href="#" class="add-cart item_add" data-toggle="modal" data-target="#myModal" style="background:#45a416; text-transform: none">Add to Cart</a>
+
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                	<div class="modal-dialog">
+
+                		<!-- Modal content-->
+                		<div class="modal-content" style="border-radius:0">
+                			<div class="modal-header" style="color: white;background: green;">
+                				<button type="button" class="close" data-dismiss="modal">&times;</button>
+                				<h4 class="modal-title">Payment Details</h4>
+                			</div>
+                			<div class="modal-body">
+
+                				<p style="font-size: 16px;margin-bottom: 20px ">For orders, call or text or whatsapp:</p>
+                				<h5><img src="/static/img/aura_natural_images/contact_us/phone-call-1.png" style="margin-right: 20px" width="32px">+254 708627655</h5>
+                				<h5><img src="/static/img/aura_natural_images/contact_us/email.png" style="margin-right: 20px" width="32px">+254 708627655</h5>
+                				<h5><img src="/static/img/aura_natural_images/contact_us/whatsapp.png" style="margin-right: 20px" width="32px">+254 708627655</h5>
+                				<!--<p><img src="img/email.png" style="margin-right: 20px" width="32px"><a href="mailto:example@email.com">info@auranaturals.com</a></p>-->
+
+                				<p style="font-size: 16px; margin-top: 40px;">To make payments, our till number is below:</p>
+                					<img src="/static/img/aura_natural_images/contact_us/lipa_na_mpesa.png" style="" width="100%"/>
+
+
+
+                			</div>
+                			<div class="modal-footer">
+                				<button type="button" style="border-radius: 0;background: green;color: white;border-color: rgba(169, 169, 169, 0.2);" class="btn btn-default" data-dismiss="modal">Close</button>
+                			</div>
+                		</div>
+
+                	</div>
+                </div>
+			</div>
+			</div>
+		</div>
+	</div>
+	<!--end-single-->
+{% endblock %}
