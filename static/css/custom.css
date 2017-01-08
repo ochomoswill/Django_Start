@@ -1,0 +1,122 @@
+
+/* top-header */
+.top-header {
+    background: #45a416;
+}
+.skyblue>li:hover>a, .skyblue>li.active>a, .skyblue .dropdown li:hover>a
+{
+    color: #45a416;
+}
+
+.card-title
+{
+    color:green;
+}
+
+section {
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+.quote {
+    color: rgba(0,0,0,.1);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/*-------------------------------*/
+/*    Carousel Fade Transition   */
+/*-------------------------------*/
+
+#fade-quote-carousel.carousel {
+    padding-bottom: 60px;
+}
+#fade-quote-carousel.carousel .carousel-inner .item {
+    padding-top: 20px;
+    opacity: 0;
+    -webkit-transition-property: opacity;
+    -ms-transition-property: opacity;
+    transition-property: opacity;
+}
+#fade-quote-carousel.carousel .carousel-inner .active {
+    opacity: 1;
+    -webkit-transition-property: opacity;
+    -ms-transition-property: opacity;
+    transition-property: opacity;
+}
+#fade-quote-carousel.carousel .carousel-indicators {
+    bottom: 10px;
+}
+#fade-quote-carousel.carousel .carousel-indicators > li {
+    background-color: #45a416;
+    border: none;
+}
+#fade-quote-carousel blockquote {
+    text-align: center;
+    border: none;
+}
+#fade-quote-carousel .profile-circle {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 100px;
+}
+
+/* Product Text */
+.product-bottom h3 {
+    font-size: 16px;
+    color: #000;
+    margin: 0;
+    text-transform: none;
+    font-family: inherit;
+}
+.product-bottom h4 span {
+    font-size: 14px;
+    color: #000;
+    margin: 5px 0 0 0;
+    font-family: inherit;
+}
+
+/* Information */
+.information h3
+{
+    font-family: inherit;
+    font-size:18px;
+    color:green;
+}
+
+/* Footer */
+.footer-right-text p {
+    margin: 8px 0 0 0;
+    font-size: 13px;
+    color: #000;
+}
+.footer-right input[type=submit] {
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px solid #45a416;
+    outline: none;
+    padding: 6px 20px;
+    background: green;
+}
+.footer-right input[type="text"] {
+    width: 47%;
+    margin-right: 10px;
+    color: #000;
+    font-size: 11px;
+    background: white;
+    padding: 8px 10px;
+    outline: none;
+    border: 2px solid #eee;
+}
+
+/* Product Pages */
+.breadcrumbs
+{
+    margin-top: 30px;
+}
+.product-one
+{
+    margin-bottom: 30px;
+}
