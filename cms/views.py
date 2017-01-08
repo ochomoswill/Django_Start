@@ -201,7 +201,8 @@ def contact(request):
             review = form.save(commit=False)
             review.published = timezone.now()
             review.save()
-            return redirect('contact')
+            redirect('contact')
+            messages.success(request, 'Submission Successful.')
     else:
         form = ReviewForm()
     template = 'views/contact_us.html'
