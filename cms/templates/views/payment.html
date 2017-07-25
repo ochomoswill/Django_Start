@@ -1,0 +1,245 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% comment %}Title{% endcomment %}
+{% block title %}
+    Checkout
+{% endblock %}
+
+{% comment %}Page Content{% endcomment %}
+{% block content %}
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
+    <!--start-breadcrumbs-->
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="breadcrumbs-main">
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li class="active">Checkout</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!--end-breadcrumbs-->
+    <!--start-single-->
+
+    <div class="container" style="padding: 32px">
+        {% comment %}<h3 style="margin-bottom: 20px">Buyer Details</h3>
+        <form style="margin-bottom: 30px">
+            <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" class="form-control" id="firstName">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" class="form-control" id="lastName">
+            </div>
+            <div class="form-group">
+                <label class="radio-inline">
+                    <input type="radio" name="optradio">Deliver
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="optradio">Pick Myself
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea type="text" class="form-control" id="address"></textarea>
+            </div>
+
+            <div class="g-recaptcha" style="margin-bottom: 10px" data-callback="recaptchaCallback"
+                 data-sitekey="6LcplRwUAAAAACcPiDCRClcY7Lpq5x5aigzkC879"></div>
+
+            <button type="button" id="btnSubmitPersonDetails" class="btn btn-default" onclick="getPersonDetails()" disabled>Submit</button>
+        </form>{% endcomment %}
+
+
+        <script>
+            //For getting CSRF token
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            function post(data, url) {
+
+
+                var request = new XMLHttpRequest();
+
+                request.open("POST", url, true);
+
+                request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                // Only send the token to relative URLs i.e. locally.
+                request.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                request.onreadystatechange = function () {
+                    console.log("request.readyState = " + request.readyState + "request.status = " + request.status);
+                    if (request.readyState == 4 && request.status == 200) {
+
+                        var obj = JSON.parse(request.responseText);
+
+                        //document.getElementById("message").innerHTML = "";
+                        //document.getElementById("update_message").innerHTML = alert(obj.data);
+                        console.log(obj.data);
+                        {% comment %}document.getElementById("cart_total").innerHTML = obj.data;
+
+                        localStorage.setItem("cart_total", obj.data);{% endcomment %}
+
+                        //document.getElementById("cart_total").innerHTML = "I am here";
+
+
+                        console.log("posted the data");
+                    }
+
+                };
+
+                request.send(data);
+            }
+
+            $(document).ready(function () {
+                if (localStorage.getItem("total_good_cost") === null) {
+                    document.getElementById("total_good_cost").innerHTML = 0;
+                } else {
+                    document.getElementById("total_good_cost").innerHTML = localStorage.getItem("total_good_cost");
+                }
+
+                var arr_quantity = [];
+                var arr_total_cost = [];
+                var arr_unit_cost = [];
+                var arr_item_name = [];
+
+
+                if (localStorage.getItem("arr_item_name") != null) {
+                    arr_item_name = JSON.parse(localStorage.getItem("arr_item_name"));
+
+                }
+
+                if (localStorage.getItem("arr_quantity") != null) {
+                    arr_quantity = JSON.parse(localStorage.getItem("arr_quantity"));
+                }
+
+                if (localStorage.getItem("arr_unit_cost") != null) {
+                    arr_unit_cost = JSON.parse(localStorage.getItem("arr_unit_cost"));
+                    console.log(arr_unit_cost);
+                }
+
+                if (localStorage.getItem("arr_total_cost") != null) {
+                    arr_total_cost = JSON.parse(localStorage.getItem("arr_total_cost"));
+
+                    var no_of_quantities = arr_total_cost.length;
+                    console.log(no_of_quantities);
+
+                    // Get array of classes without jQuery
+                    var array = document.getElementsByTagName('html')[0].className.split(/\s+/);
+
+                    var arrayLength = arr_unit_cost.length;
+                    console.log("Array length:" + arrayLength);
+                    //var theTable = document.createElement('table');
+                    var tbody = document.getElementById("goods_tbody");
+
+                    for (i = 0; i < arrayLength; i++) {
+                        var tr = document.createElement('TR');
+                        for (j = 0; j < 4; j++) {
+                            var td = document.createElement('TD');
+                            if(j===0){
+                                td.appendChild(document.createTextNode(arr_item_name[i]));
+                                console.log(arr_item_name[j]);
+                            }else if(j===1){
+                                td.appendChild(document.createTextNode(arr_quantity[i]));
+                                console.log(arr_quantity[j]);
+                            }else if(j===2){
+                                td.appendChild(document.createTextNode(arr_unit_cost[i]));
+                                console.log(arr_unit_cost[j]);
+                            }else if(j===3){
+                                td.appendChild(document.createTextNode(arr_total_cost[i]));
+                                console.log(arr_total_cost[j]);
+                            }
+                            tr.appendChild(td);
+                        }
+                        tbody.appendChild(tr);
+                    }
+                }
+            });
+
+            function recaptchaCallback() {
+                $('#btnSubmitPersonDetails').removeAttr('disabled');
+            }
+
+
+            function getPersonDetails() {
+
+                var url = "/payment_data/";
+
+                var email = document.getElementById("email").value;
+                var firstname = document.getElementById("firstName").value;
+                var lastname = document.getElementById("lastName").value;
+                var address = document.getElementById("address").value;
+
+                var toDeliver = document.querySelector("input[name='optradio']:checked").value;
+
+                var data = "&email=" + email +
+                    "&firstname=" + firstname +
+                    "&lastname=" + lastname +
+                    "&address=" + address;
+
+                post(data, url);
+
+            }
+
+        </script>
+
+        <hr style="border:1px solid green"/>
+
+        <h3 style="margin-bottom: 20px">Order Summary</h3>
+        <table class="table table-bordered table-striped" style="width: 100%">
+            <tr>
+                <th style="width:25%">Item</th>
+                <th style="width:25%">Quantity</th>
+                <th style="width:25%">Unit Price</th>
+                <th style="width:25%">Subtotal</th>
+            </tr>
+            <tbody id="goods_tbody">
+
+            </tbody>
+            <tr style="height:100px">
+                <td colspan="4" style="width:50%;border-right: none;">
+                    <h3 class="pull-right" style="font-family: 'Segoe UI Light'; margin: 35px; margin-top: 37px;">Total:
+                        KES <span
+                                id="total_good_cost"
+                                style="font-weight: bold">0</span></h3>
+                </td>
+                {% comment %}<td style="width:50%;border-left: none;">
+                    <a class="pull-right btn-lg"
+                       style="border-radius: 0;background: green;color: white;border-color: rgba(169, 169, 169, 0.2);margin: 30px;"
+                       href="{% url 'payment' %}"
+                    >PROCEED TO CHECKOUT</a>
+                </td>{% endcomment %}
+            </tr>
+        </table>
+
+        <hr style="border:1px solid green"/>
+
+        <div>
+            <h3 style="margin-bottom: 20px">{% trans "Pesapal Payment details" %}</h3>
+            <iframe width="100%" height="500px" src="{{ pesapal_url }}"></iframe>
+        </div>
+    </div>
+
+    <!--end-single-->
+{% endblock %}

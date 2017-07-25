@@ -18,6 +18,7 @@ from django.conf import settings
 from . import views
 #setting up the media
 from django.conf.urls.static import static
+from views import PaymentView,PaymentResponse,PaymentViewData
 
 urlpatterns = [
     # Home page
@@ -45,6 +46,22 @@ urlpatterns = [
 
     # Contact Us
     url(r'^contact/$', views.contact, name='contact'),
+
+    # Checkout
+    url(r'^cart/$', views.checkout, name='checkout'),
+    url(r'^decart/$', views.decart, name='decart'),
+    url(r'^checkout_goods/$', views.checkout_goods, name='checkout_goods'),
+    url(r'^buyer_details/$', views.buyer_details, name='buyer_details'),
+
+    #url(r'^PaymentView/$', views.PaymentView.get_pesapal_payment_iframe(), name='PaymentView'),
+    url(r'^payment/$', PaymentView.as_view(), name='payment'),
+    url(r'^payment_data/$', PaymentViewData.as_view(), name='payment_data'),
+
+    url(r'^completed_transaction/$', PaymentResponse.as_view(), name='completed_transaction'),
+
+
+
+
 ]
 
 

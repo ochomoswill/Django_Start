@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% comment %}Title{% endcomment %}
+{% block title %}
+    {{ products.name }}
+{% endblock %}
+
+{% comment %}Page Content{% endcomment %}
+{% block content %}
+<!--start-breadcrumbs-->
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="breadcrumbs-main">
+				<ol class="breadcrumb">
+					<li><a href="{% url 'index' %}">Home</a></li>
+					<li class="active">Payment Response</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<!--end-breadcrumbs-->
+	<!--start-single-->
+    <div class="container-fluid">
+        <br>
+        <table>
+          {% for key, value in response.items %}
+            <tr>
+              <td><b>{{ pesapal_merchant_reference }}: </b></td>
+              <td>{{ value }}</td>
+            </tr>
+          {% empty %}
+            Maybe you might want to pass <b>merchant_reference</b> to the URL
+          {% endfor %}
+        </table>
+    </div>
+	<!--end-single-->
+{% endblock %}

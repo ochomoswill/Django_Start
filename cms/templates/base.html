@@ -41,8 +41,9 @@
     <!--=================================================================-->
         <!--jQuery(necessary for Bootstrap's JavaScript plugins)-->
         <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+        <script src="/static/js/posts/checkout.js"></script>
         <!--Scripts for simple cart-->
-        <script src="{% static 'js/simpleCart.min.js' %}"> </script>
+        {% comment %}<script src="{% static 'js/simpleCart.min.js' %}"> </script>{% endcomment %}
         <!--Scripts for the menu-->
         <script type="text/javascript" src="{% static 'js/memenu.js' %}"></script>
         <script>
@@ -66,8 +67,17 @@
 					Aura Naturals
 				</div>
 				<div class="col-md-6 top-header-left">
-
+					<div class="cart box_1">
+						<a href="{% url 'checkout' %}">
+							<div class="total">
+								<span class="badge" style="background: white; color:green;margin-left: 6px;" id="cart_total"></span></div>
+								<img src="/static/img/cart-1.png" alt="" />
+						</a>
+						<p><a href="javascript:;" style="font-family:Lato-Regular; font-weight: bolder; color:white" class="simpleCart_empty">{{ total_count }} Empty Cart</a></p>
+						<div class="clearfix"> </div>
+					</div>
 				</div>
+				<div class="clearfix"></div>
 				<div class="clearfix"></div>
 			</div>
 		</div>

@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cms'
+    'cms',
+    'django_pesapal',
+    'django.contrib.sites',
 ]
 
 MIDDLEWARE = [
@@ -83,7 +85,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '3306',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'toor',
     }
 }
 
@@ -133,4 +135,47 @@ STATIC_URL = '/static/'
 #setting up the media file
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django_pesapal': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+PESAPAL_DEMO =	True
+PESAPAL_CONSUMER_KEY = 	'yk/MkmmwCNuJCPF0pp2By0c+C4ZD6HNo'
+PESAPAL_CONSUMER_SECRET =	'ztBAIarJSFnEvkFOKL8IenqId1g='
+#(if PESAPAL_DEMO=True)
+PESAPAL_IFRAME_LINK   =	'http://demo.pesapal.com/api/PostPesapalDirectOrderV4'
+#(if PESAPAL_DEMO=False)
+#PESAPAL_IFRAME_LINK  =	'https://www.pesapal.com/api/PostPesapalDirectOrderV4'
+#(Demo Mode=True)
+PESAPAL_QUERY_STATUS_LINK  = 	'http://demo.pesapal.com/API/QueryPaymentDetails'
+#(Demo Mode=False)
+#PESAPAL_QUERY_STATUS_LINK  =	'https://www.pesapal.com/API/QueryPaymentDetails'
+PESAPAL_OAUTH_CALLBACK_URL  =	'transaction_completed'
+PESAPAL_OAUTH_SIGNATURE_METHOD  =	'SignatureMethod_HMAC_SHA1'
+PESAPAL_TRANSACTION_DEFAULT_REDIRECT_URL =	'completed_transaction'
+PESAPAL_TRANSACTION_FAILED_REDIRECT_URL =	''
+PESAPAL_REDIRECT_WITH_REFERENCE =	True
+PESAPAL_TRANSACTION_MODEL =	'django_pesapal.Transaction'
+
+# Override pesapal keys
+
+try:
+    from local_config import *
+except ImportError:
+    pass
 
